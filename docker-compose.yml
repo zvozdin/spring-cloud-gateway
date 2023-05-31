@@ -1,0 +1,19 @@
+version: "3.0"
+
+services:
+  gateway-service-app:
+    image: gateway-service-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gateway-service-microservices_course
+    environment:
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE}
+    ports:
+      - "9090:9090"
+    networks:
+      - service-registry_default
+
+networks:
+  service-registry_default:
+    external: true
