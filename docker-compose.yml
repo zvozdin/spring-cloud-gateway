@@ -8,12 +8,15 @@ services:
       dockerfile: Dockerfile
     container_name: gateway-service-microservices_course
     environment:
-      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE}
+      SPRING_CLOUD_CONFIG_URI: ${SPRING_CLOUD_CONFIG_URI}
     ports:
       - "9090:9090"
     networks:
       - service-registry_default
+      - service-configuration_default
 
 networks:
   service-registry_default:
+    external: true
+  service-configuration_default:
     external: true
