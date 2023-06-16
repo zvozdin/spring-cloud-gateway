@@ -5,13 +5,23 @@ spring:
     gateway:
       routes:
         - id: resource-service
-          uri: 'lb://resource-service'
+          uri: 'http://localhost:8080'
           predicates:
-            - Path=/api/v1/resources/*,/api/v1/resources
+            - Path=/api/v1/resources/**,/api/v1/resources
         - id: song-service
-          uri: 'lb://song-service'
+          uri: 'http://localhost:8081'
           predicates:
             - Path=/api/v1/songs/*,/api/v1/songs
+        - id: storage-service
+          uri: 'http://localhost:8085'
+          predicates:
+            - Path=/api/v1/storages
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 
 eureka:
   client:
