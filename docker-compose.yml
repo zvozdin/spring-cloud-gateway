@@ -14,9 +14,12 @@ services:
     networks:
       - service-registry_default
       - service-configuration_default
+      - resource-service_elasticsearch
 
 networks:
   service-registry_default:
     external: true
   service-configuration_default:
+    external: true
+  resource-service_elasticsearch:
     external: true
